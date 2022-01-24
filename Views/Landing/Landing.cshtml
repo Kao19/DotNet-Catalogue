@@ -1,0 +1,180 @@
+﻿@model IEnumerable<Tshirt.Context.tableTshirt>
+
+@{
+    ViewBag.Title = "Landing";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+
+}
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+
+        div.gallery {
+            margin: 25px;
+            border: 1px solid #ccc;
+            float: left;
+            width: 250px;
+        }
+
+            div.gallery:hover {
+                border: 1px solid #777;
+            }
+
+            div.gallery img {
+                width: 200px;
+                height: 200px;
+            }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+
+        div.divCent {
+            margin: auto;
+            width: 70%;
+            padding: 10px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: center;
+            padding: 5px;
+            background-color: goldenrod;
+            color: black;
+            width: 100%;
+            height: 140px;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: black;
+        }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: #04AA6D;
+                    color: white;
+                }
+
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: goldenrod;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+            .button:hover {
+                background-color: #3e8e41
+            }
+
+            .button:active {
+                background-color: #3e8e41;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+
+        .mySlides {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap"
+          rel="stylesheet" />
+</head>
+<body>
+
+    <div class="topnav">
+        <img src="../../Content/logoWeb.jpeg" height="100" width="100" />
+        <a href="About" style="float: right; margin-top:20px">About</a>
+    </div>
+
+    <!--
+    <div class="divCent">
+        <img class="mySlides" src="../../Content/Code.jpg" style="height: 400px; width: 800px;">
+        <img class="mySlides" src="../../Content/Cloud.jpg" style="height: 400px; width: 800px;">
+        <img class="mySlides" src="../../Content/Bye.jfif" style="height: 400px; width: 800px;">
+        <img class="mySlides" src="../../Content/img1.jpeg" style="height: 400px; width: 800px;">
+        <img class="mySlides" src="../../Content/img7.jpeg" style="height: 400px; width: 800px;">
+        <img class="mySlides" src="../../Content/img8.jpeg" style="height: 400px; width: 800px;">
+    </div>
+
+    <script type="text/javascript">
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > x.length) { slideIndex = 1 }
+            x[slideIndex - 1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+    </script>
+
+        -->
+
+
+    <div class="divCent">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="gallery">
+                <img src="@Url.Content(item.img)" />
+
+                <p>  @Html.DisplayFor(modelItem => item.prix) MAD</p>
+
+
+                <button type="submit" class="button"> <a href="../Order/Create"> Commander </a> </button>
+
+            </div>
+        }
+    </div>
+</body>
+<footer>
+
+    <div>
+    <h3><a href="mailto:blabla@gmail.com" style="color:black">Email</a></h3>
+    <h3><a style="color:black">Telephone: 0666538913</a></h3>
+     <h3> <p>👋</p> </h3>
+
+</div>
+
+</footer>
+</html>
+
+

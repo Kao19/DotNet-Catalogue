@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Tshirt.Context.tableClient>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 60%;
+            position: absolute;
+            left: 20%;
+            margin-left: -50px;
+            top: 30%;
+            margin-top: -50px;
+        }
+
+            #table td, #table th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #table tr:hover {
+                background-color: #ddd;
+            }
+
+            #table th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: dimgrey;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+
+    <br /><br />
+    <h2 style="background-color: white; text-align: center;">Liste des Clients</h2>
+
+    <table id="table">
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.addresse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ville)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telephone)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.addresse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ville)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telephone)
+                </td>
+                <td>
+                    <button style="background-color: greenyellow;">  @Html.ActionLink("Edit", "Edit", new { id = item.id }) </button>
+                    <button style="background-color: burlywood;"> @Html.ActionLink("Details", "Details", new { id = item.id }) </button>
+                    <button style="background-color: red;">@Html.ActionLink("Delete", "Delete", new { id = item.id }) </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

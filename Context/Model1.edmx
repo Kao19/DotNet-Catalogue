@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="testdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tableAdmin">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tableClient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="100" />
+          <Property Name="prenom" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="addresse" Type="varchar" MaxLength="255" />
+          <Property Name="ville" Type="varchar" MaxLength="255" />
+          <Property Name="telephone" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tableCommande">
+          <Key>
+            <PropertyRef Name="IdCmd" />
+          </Key>
+          <Property Name="IdCmd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCmdTshirt" Type="int" />
+          <Property Name="etat" Type="varchar" MaxLength="20" />
+          <Property Name="IdCmdClt" Type="int" />
+        </EntityType>
+        <EntityType Name="tableTshirt">
+          <Key>
+            <PropertyRef Name="IdTshirt" />
+          </Key>
+          <Property Name="IdTshirt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="taille" Type="varchar" MaxLength="10" />
+          <Property Name="couleur" Type="varchar" MaxLength="10" />
+          <Property Name="prix" Type="varchar" MaxLength="10" />
+          <Property Name="img" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="test">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="100" />
+          <Property Name="prenom" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__tableComm__IdCmd__5441852A">
+          <End Role="tableTshirt" Type="Self.tableTshirt" Multiplicity="0..1" />
+          <End Role="tableCommande" Type="Self.tableCommande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tableTshirt">
+              <PropertyRef Name="IdTshirt" />
+            </Principal>
+            <Dependent Role="tableCommande">
+              <PropertyRef Name="IdCmdTshirt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CltOrder">
+          <End Role="tableClient" Type="Self.tableClient" Multiplicity="0..1" />
+          <End Role="tableCommande" Type="Self.tableCommande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tableClient">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tableCommande">
+              <PropertyRef Name="IdCmdClt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testdbModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tableAdmin" EntityType="Self.tableAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tableClient" EntityType="Self.tableClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tableCommande" EntityType="Self.tableCommande" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tableTshirt" EntityType="Self.tableTshirt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="test" EntityType="Self.test" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tableComm__IdCmd__5441852A" Association="Self.FK__tableComm__IdCmd__5441852A">
+            <End Role="tableTshirt" EntitySet="tableTshirt" />
+            <End Role="tableCommande" EntitySet="tableCommande" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CltOrder" Association="Self.FK_CltOrder">
+            <End Role="tableClient" EntitySet="tableClient" />
+            <End Role="tableCommande" EntitySet="tableCommande" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tableAdmin">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tableClient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="addresse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ville" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telephone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tableCommande" Relationship="Self.FK_CltOrder" FromRole="tableClient" ToRole="tableCommande" />
+        </EntityType>
+        <EntityType Name="tableCommande">
+          <Key>
+            <PropertyRef Name="IdCmd" />
+          </Key>
+          <Property Name="IdCmd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCmdTshirt" Type="Int32" />
+          <Property Name="etat" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdCmdClt" Type="Int32" />
+          <NavigationProperty Name="tableClient" Relationship="Self.FK_CltOrder" FromRole="tableCommande" ToRole="tableClient" />
+          <NavigationProperty Name="tableTshirt" Relationship="Self.FK__tableComm__IdCmd__5441852A" FromRole="tableCommande" ToRole="tableTshirt" />
+        </EntityType>
+        <EntityType Name="tableTshirt">
+          <Key>
+            <PropertyRef Name="IdTshirt" />
+          </Key>
+          <Property Name="IdTshirt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="taille" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="couleur" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="prix" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="img" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tableCommande" Relationship="Self.FK__tableComm__IdCmd__5441852A" FromRole="tableTshirt" ToRole="tableCommande" />
+        </EntityType>
+        <EntityType Name="test">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_CltOrder">
+          <End Role="tableClient" Type="Self.tableClient" Multiplicity="0..1" />
+          <End Role="tableCommande" Type="Self.tableCommande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tableClient">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tableCommande">
+              <PropertyRef Name="IdCmdClt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tableComm__IdCmd__5441852A">
+          <End Role="tableTshirt" Type="Self.tableTshirt" Multiplicity="0..1" />
+          <End Role="tableCommande" Type="Self.tableCommande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tableTshirt">
+              <PropertyRef Name="IdTshirt" />
+            </Principal>
+            <Dependent Role="tableCommande">
+              <PropertyRef Name="IdCmdTshirt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tableAdmin" EntityType="Self.tableAdmin" />
+          <EntitySet Name="tableClient" EntityType="Self.tableClient" />
+          <EntitySet Name="tableCommande" EntityType="Self.tableCommande" />
+          <EntitySet Name="tableTshirt" EntityType="Self.tableTshirt" />
+          <EntitySet Name="test" EntityType="Self.test" />
+          <AssociationSet Name="FK_CltOrder" Association="Self.FK_CltOrder">
+            <End Role="tableClient" EntitySet="tableClient" />
+            <End Role="tableCommande" EntitySet="tableCommande" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tableComm__IdCmd__5441852A" Association="Self.FK__tableComm__IdCmd__5441852A">
+            <End Role="tableTshirt" EntitySet="tableTshirt" />
+            <End Role="tableCommande" EntitySet="tableCommande" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testdbModelStoreContainer" CdmEntityContainer="testdbEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="testdbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tableAdmin">
+            <EntityTypeMapping TypeName="testdbModel.tableAdmin">
+              <MappingFragment StoreEntitySet="tableAdmin">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tableClient">
+            <EntityTypeMapping TypeName="testdbModel.tableClient">
+              <MappingFragment StoreEntitySet="tableClient">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="addresse" ColumnName="addresse" />
+                <ScalarProperty Name="ville" ColumnName="ville" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tableCommande">
+            <EntityTypeMapping TypeName="testdbModel.tableCommande">
+              <MappingFragment StoreEntitySet="tableCommande">
+                <ScalarProperty Name="IdCmd" ColumnName="IdCmd" />
+                <ScalarProperty Name="IdCmdTshirt" ColumnName="IdCmdTshirt" />
+                <ScalarProperty Name="etat" ColumnName="etat" />
+                <ScalarProperty Name="IdCmdClt" ColumnName="IdCmdClt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tableTshirt">
+            <EntityTypeMapping TypeName="testdbModel.tableTshirt">
+              <MappingFragment StoreEntitySet="tableTshirt">
+                <ScalarProperty Name="IdTshirt" ColumnName="IdTshirt" />
+                <ScalarProperty Name="taille" ColumnName="taille" />
+                <ScalarProperty Name="couleur" ColumnName="couleur" />
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="test">
+            <EntityTypeMapping TypeName="testdbModel.test">
+              <MappingFragment StoreEntitySet="test">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

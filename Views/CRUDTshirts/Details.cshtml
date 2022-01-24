@@ -1,0 +1,58 @@
+﻿@model Tshirt.Context.tableTshirt
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Details</title>
+</head>
+<body style="margin: auto; width: 50%; padding: 10px;">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Tshirt</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.taille)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.taille)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.couleur)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.couleur)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.prix)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.prix)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.img)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.img)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IdTshirt }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </body></html>

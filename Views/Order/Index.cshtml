@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Tshirt.Context.tableCommande>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.etat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tableClient.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tableTshirt.taille)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.etat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tableClient.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tableTshirt.taille)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdCmd }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdCmd }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdCmd })
+        </td>
+    </tr>
+}
+
+</table>

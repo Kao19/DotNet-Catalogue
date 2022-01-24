@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tableAdmin">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tableClient">
+    <Key>
+      <PropertyRef Name="IdClt" />
+    </Key>
+    <Property Name="IdClt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tableCommande" Relationship="Self.FK__tableComm__IdClt__4316F928" FromRole="tableClient" ToRole="tableCommande" />
+  </EntityType>
+  <EntityType Name="tableCommande">
+    <Key>
+      <PropertyRef Name="IdCmd" />
+    </Key>
+    <Property Name="IdCmd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdCltCmd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdTshirtCmd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="etat" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tableClient" Relationship="Self.FK__tableComm__IdClt__4316F928" FromRole="tableCommande" ToRole="tableClient" />
+    <NavigationProperty Name="tableTshirt" Relationship="Self.FK__tableComm__IdTsh__440B1D61" FromRole="tableCommande" ToRole="tableTshirt" />
+  </EntityType>
+  <EntityType Name="tableTshirt">
+    <Key>
+      <PropertyRef Name="IdTshirt" />
+    </Key>
+    <Property Name="IdTshirt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="taille" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="couleur" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prix" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="img" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tableCommande" Relationship="Self.FK__tableComm__IdTsh__440B1D61" FromRole="tableTshirt" ToRole="tableCommande" />
+  </EntityType>
+  <Association Name="FK__tableComm__IdClt__4316F928">
+    <End Role="tableClient" Type="Self.tableClient" Multiplicity="0..1" />
+    <End Role="tableCommande" Type="Self.tableCommande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tableClient">
+        <PropertyRef Name="IdClt" />
+      </Principal>
+      <Dependent Role="tableCommande">
+        <PropertyRef Name="IdCltCmd" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tableComm__IdTsh__440B1D61">
+    <End Role="tableTshirt" Type="Self.tableTshirt" Multiplicity="0..1" />
+    <End Role="tableCommande" Type="Self.tableCommande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tableTshirt">
+        <PropertyRef Name="IdTshirt" />
+      </Principal>
+      <Dependent Role="tableCommande">
+        <PropertyRef Name="IdTshirtCmd" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tableAdmin" EntityType="Self.tableAdmin" />
+    <EntitySet Name="tableClient" EntityType="Self.tableClient" />
+    <EntitySet Name="tableCommande" EntityType="Self.tableCommande" />
+    <EntitySet Name="tableTshirt" EntityType="Self.tableTshirt" />
+    <AssociationSet Name="FK__tableComm__IdClt__4316F928" Association="Self.FK__tableComm__IdClt__4316F928">
+      <End Role="tableClient" EntitySet="tableClient" />
+      <End Role="tableCommande" EntitySet="tableCommande" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tableComm__IdTsh__440B1D61" Association="Self.FK__tableComm__IdTsh__440B1D61">
+      <End Role="tableTshirt" EntitySet="tableTshirt" />
+      <End Role="tableCommande" EntitySet="tableCommande" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

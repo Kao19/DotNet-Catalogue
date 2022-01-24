@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tableAdmin">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tableClient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="100" />
+    <Property Name="prenom" Type="varchar" MaxLength="100" />
+    <Property Name="email" Type="varchar" MaxLength="255" />
+    <Property Name="addresse" Type="varchar" MaxLength="255" />
+    <Property Name="ville" Type="varchar" MaxLength="255" />
+    <Property Name="telephone" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tableCommande">
+    <Key>
+      <PropertyRef Name="IdCmd" />
+    </Key>
+    <Property Name="IdCmd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCmdTshirt" Type="int" />
+    <Property Name="etat" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tableTshirt">
+    <Key>
+      <PropertyRef Name="IdTshirt" />
+    </Key>
+    <Property Name="IdTshirt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="taille" Type="varchar" MaxLength="10" />
+    <Property Name="couleur" Type="varchar" MaxLength="10" />
+    <Property Name="prix" Type="varchar" MaxLength="10" />
+    <Property Name="img" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK__tableComm__IdCmd__5441852A">
+    <End Role="tableTshirt" Type="Self.tableTshirt" Multiplicity="0..1" />
+    <End Role="tableCommande" Type="Self.tableCommande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tableTshirt">
+        <PropertyRef Name="IdTshirt" />
+      </Principal>
+      <Dependent Role="tableCommande">
+        <PropertyRef Name="IdCmdTshirt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testdbModelStoreContainer">
+    <EntitySet Name="tableAdmin" EntityType="Self.tableAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tableClient" EntityType="Self.tableClient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tableCommande" EntityType="Self.tableCommande" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tableTshirt" EntityType="Self.tableTshirt" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tableComm__IdCmd__5441852A" Association="Self.FK__tableComm__IdCmd__5441852A">
+      <End Role="tableTshirt" EntitySet="tableTshirt" />
+      <End Role="tableCommande" EntitySet="tableCommande" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

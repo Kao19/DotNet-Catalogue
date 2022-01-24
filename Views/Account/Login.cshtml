@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<!-- login form -->
+<section class="w3l-login">
+    <div class="overlay">
+        <div class="wrapper">
+            <div class="logo">
+                <a class="brand-logo" href="index.html">Welcome Admin!</a>
+            </div>
+            <div class="form-section">
+                <h3>Login</h3>
+                <form action="Verify" method="post" class="signin-form">
+                    <div class="form-input">
+                        <input type="text" name="Login" placeholder="Login" required="" autofocus>
+                    </div>
+                    <div class="form-input">
+                        <input type="password" name="Password" placeholder="Password" required="">
+                    </div>
+          
+                    <button type="submit" class="btn btn-primary theme-button mt-4">Log in</button>
+                    
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+
+    <!-- copyright -->
+    <div class="copy-right">
+        <p>&copy; 2020 ASP.NET mini app. All rights reserved </p>
+    </div>
+    <!-- //copyright -->
+</section>
+
+<!-- /login form -->

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="testdbModelStoreContainer" CdmEntityContainer="testdbEntities">
+    <EntitySetMapping Name="tableAdmin">
+      <EntityTypeMapping TypeName="testdbModel.tableAdmin">
+        <MappingFragment StoreEntitySet="tableAdmin">
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tableClient">
+      <EntityTypeMapping TypeName="testdbModel.tableClient">
+        <MappingFragment StoreEntitySet="tableClient">
+          <ScalarProperty Name="IdClt" ColumnName="IdClt" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="ville" ColumnName="ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tableCommande">
+      <EntityTypeMapping TypeName="testdbModel.tableCommande">
+        <MappingFragment StoreEntitySet="tableCommande">
+          <ScalarProperty Name="IdCmd" ColumnName="IdCmd" />
+          <ScalarProperty Name="IdCltCmd" ColumnName="IdCltCmd" />
+          <ScalarProperty Name="IdTshirtCmd" ColumnName="IdTshirtCmd" />
+          <ScalarProperty Name="etat" ColumnName="etat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tableTshirt">
+      <EntityTypeMapping TypeName="testdbModel.tableTshirt">
+        <MappingFragment StoreEntitySet="tableTshirt">
+          <ScalarProperty Name="IdTshirt" ColumnName="IdTshirt" />
+          <ScalarProperty Name="taille" ColumnName="taille" />
+          <ScalarProperty Name="couleur" ColumnName="couleur" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+          <ScalarProperty Name="img" ColumnName="img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

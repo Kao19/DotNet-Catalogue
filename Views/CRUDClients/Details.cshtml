@@ -1,0 +1,75 @@
+﻿@model Tshirt.Context.tableClient
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Details</title>
+</head>
+<body style="margin: auto; width: 50%; padding: 10px;">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Client</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.prenom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.prenom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.addresse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.addresse)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ville)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ville)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.telephone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.telephone)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </body>
+</html>

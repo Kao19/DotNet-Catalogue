@@ -1,0 +1,49 @@
+﻿@model Tshirt.Context.tableCommande
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tableCommande</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.etat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.etat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tableClient.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tableClient.nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tableTshirt.taille)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tableTshirt.taille)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

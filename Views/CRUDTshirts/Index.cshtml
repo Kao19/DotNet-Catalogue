@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Tshirt.Context.tableTshirt>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 60%;
+            position: absolute;
+            left: 20%;
+            margin-left: -50px;
+            top: 30%;
+            margin-top: -50px;
+        }
+
+            #table td, #table th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #table tr:hover {
+                background-color: #ddd;
+            }
+
+            #table th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: dimgrey;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+
+    <br /><br />
+    <h2 style="background-color: white; text-align: center;">Liste des Tshirts</h2>
+    <p style="text-align: center;">
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table id="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.taille)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.couleur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prix)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.img)
+            </th>
+            <th>  </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.taille)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.couleur)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prix)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.img)
+                </td>
+                <td>
+                    <button style="background-color: greenyellow;"> @Html.ActionLink("Edit", "Edit", new { id = item.IdTshirt }) </button>
+                    <button style="background-color: burlywood;"> @Html.ActionLink("Details", "Details", new { id = item.IdTshirt }) </button>
+                    <button style="background-color: red;"> @Html.ActionLink("Delete", "Delete", new { id = item.IdTshirt }) </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+
